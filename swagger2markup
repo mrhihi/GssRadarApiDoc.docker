@@ -1,0 +1,2 @@
+#!/bin/bash
+java -jar "/app/libexec/swagger2markup-cli-1.3.3.jar" "$@"

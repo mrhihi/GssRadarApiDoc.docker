@@ -1,0 +1,64 @@
+
+[[_authentication_]]
+== 身分驗證
+
+[width=100%, valign=middle, cols="1,4,1,4"]
+|===
+| 功能類別
+| API
+| 功能名稱
+| DataHub API Access Token 說明
+
+4+^| 說明
+
+| 功能概述
+3+| 呼叫DataHub API時進行身分驗證，驗證通過方可正常執行。
+
+| 權限
+3+| 系統
+
+|
+3+a| 1. 呼叫DataHub API時，須在 Requeset Header 上加入 Access Token，即下圖紅框所示X-API-Token +
+image:../../themes/0.1-images/x-api-token.png[] +
+ ##X-API-Token(Access Token)##：採 jwt HS256 加密格式，此Token字串，待實際開發後提供。 +
+  2. 呼叫 API C# 範例 +
+image:../../themes/0.1-images/call-api-in-c#.png[] +
+  3. 補充：##呼叫API失敗範例##（成功範例於各API規格中說明） +
+[source, json]
+----
+  {
+    "HttpStatusCode": 403,
+    "ErrorCode": "100",
+    "Result": null,
+    "ExtraData": {"ErrorMsg": "無權限存取該API: Access Token 已過期"}
+  }
+----
+|
+3+a| * Error 的說明如下： +
+  ExtraData 裡的 ErrorMsg 會顯示如下的 ErrorText ，當 HttpStatusCode 回傳值非 200 時，可用來判斷呼叫 API 失敗的原因。 +
+[source, xml]
+----
+<list>
+        <!-- ErrorCode, HttpStatusCode, ErrorText -->
+        <!-- ErrorCode編碼原則
+                第一碼:  
+                        1-API存取相關錯誤
+                        2-資料庫相關錯誤
+                        3-程式內相關錯誤,EX:因為傳入資料導致程式掛掉
+                        4-警告類
+                        5-API內未自行Handle到的錯誤 
+                第二碼: 固定為0
+                第三碼: 依照前兩碼流水號續編
+        　　-->
+        <value>100,403,無權限存取該API</value>
+        <value>101,400,傳入參數錯誤</value>
+        <value>102,403,授權過程發生錯誤</value>
+        <value>200,500,資料庫發生錯誤</value>
+        <value>201,500,資料已存在</value>
+        <value>400,200,系統檢查出有異常警告</value>
+        <value>500,500,處理過程中發生不明錯誤</value>
+</list>
+----
+|===
+
+
