@@ -3,7 +3,9 @@
 rm -rf "outdir/Step-1"
 rm -rf "outdir/Step-2"
 
-./1-Convert.sh
+titletext=""
+source ./1-Convert.sh
+export titletext
 
 ./2-merge.sh hcm
 ./3-ToPDF.sh hcm

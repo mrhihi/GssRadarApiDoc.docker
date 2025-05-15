@@ -34,8 +34,11 @@ app.MapPost("/gendoc", async (HttpRequest req) =>
         var savePath = Path.Combine(BASE_DIR, "PUBLIC.json");
         Directory.CreateDirectory(Path.GetDirectoryName(savePath)!); // 確保目錄存在
 
-        await using var stream = new FileStream(savePath, FileMode.Create);
-        await file.CopyToAsync(stream);
+        await using (var stream = new FileStream(savePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
         var process = new Process
         {
             StartInfo = new ProcessStartInfo

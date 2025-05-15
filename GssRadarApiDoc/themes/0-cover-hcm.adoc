@@ -3,7 +3,7 @@
 &nbsp; +
 &nbsp;
 
-image::../themes/0-images/vitalhcm-icon.png[width=200, height=100, align=center]
+image::../../themes/0-images/vitalhcm-icon.png[width=200, height=100, align=center]
 
 &nbsp; +
 &nbsp; +
@@ -13,6 +13,7 @@ image::../themes/0-images/vitalhcm-icon.png[width=200, height=100, align=center]
 |===
 | &nbsp; +
  Vital HCM API +
+ SUBTITLE +
  &nbsp; +
 |===
 
@@ -28,4 +29,4 @@ image::../themes/0-images/vitalhcm-icon.png[width=200, height=100, align=center]
 &nbsp; +
 &nbsp;
 
-image::../themes/0-images/GSS-icon.png[width=200, height=34, align=center]
+image::../../themes/0-images/GSS-icon.png[width=200, height=34, align=center]
