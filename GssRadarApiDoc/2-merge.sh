@@ -7,6 +7,9 @@ else
     title="RADAR API"
 fi
 
+mkdir -p "outdir/Step-1"
+mkdir -p "outdir/Step-2"
+
 cp -f themes/0-cover-$coverTpl.adoc outdir/Step-1/0-cover-$coverTpl.tpl.adoc
 
 # replace SUBTITLE in 0-cover-*.adoc
@@ -15,7 +18,7 @@ sed "s/SUBTITLE/$titletext/g" outdir/Step-1/0-cover-$coverTpl.tpl.adoc > outdir/
 asciidoctor-pdf -a scripts=cjk -a pdf-theme=./themes/pdf.yml -a pdf-fontsdir=./themes outdir/Step-1/0-cover-$coverTpl.adoc
 
 rm -f "outdir/Step-2/0-cover-$coverTpl.pdf"
-mkdir -p "outdir/Step-2"
+
 mv "outdir/Step-1/0-cover-$coverTpl.pdf" "outdir/Step-2/"
 
 # cat themes/0-cover-$coverTpl.adoc > outdir/Step-2/API-$coverTpl.adoc

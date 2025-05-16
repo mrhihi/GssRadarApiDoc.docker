@@ -20,16 +20,21 @@ COPY GssRadarApiDoc /app/GssRadarApiDoc
 COPY Api /app/Api
 
 # 因為 swagger2markup 用的 jdk 是 oepnjdk 1.8 版，所以不能用 apt 安裝要另外處理
-# arm cpu 用的 jdk
-# COPY OpenJDK8U-x64.tar.gz /app
-# RUN tar -xf /app/OpenJDK8U-x64.tar.gz -C /app
-
 # x64 cpu 用的 jdk
-COPY OpenJDK8U-aarch64.tar.gz /app
-RUN tar -xf /app/OpenJDK8U-aarch64.tar.gz -C /app
+COPY OpenJDK8U-x64.tar.gz /app
+RUN tar -xf /app/OpenJDK8U-x64.tar.gz -C /app
+
+# arm cpu 用的 jdk
+#COPY OpenJDK8U-aarch64.tar.gz /app
+#RUN tar -xf /app/OpenJDK8U-aarch64.tar.gz -C /app
 
 ENV PATH="$PATH:/app"
 RUN chmod +x /app/swagger2markup
+RUN chmod +x /app/GssRadarApiDoc/1-Convert.sh
+RUN chmod +x /app/GssRadarApiDoc/2-merge.sh
+RUN chmod +x /app/GssRadarApiDoc/2.1-replace.csx
+RUN chmod +x /app/GssRadarApiDoc/3-ToPDF.sh
+RUN chmod +x /app/GssRadarApiDoc/Run.sh
 
 ENV JAVA_HOME="/app/jdk8u432-b06"
 ENV PATH=$PATH:$JAVA_HOME/bin
